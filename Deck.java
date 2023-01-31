@@ -1,18 +1,77 @@
 /**
- * Write a description of class Deck here.
+ * Deck class.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Alex_CollierLake
+ * @version 1/19/2023
  */
 
 import greenfoot.*;
+import java.util.ArrayList;
 
 public class Deck 
 {
-    /****************************************************
-    ***   Leave as comment until ready to implement   ***
-    *****************************************************
-    // adds all the cards to the unshuffled deck.   
+    
+    private Card[] unShuffledDeck;
+    private ArrayList<Card> shuffledDeck;
+    
+    Deck(int numOfCardsInDeck)
+    {
+        numOfCardsInDeck = limitNumCardsInDeck(numOfCardsInDeck);  // limits size to 27 or 81        
+        unShuffledDeck = new Card[numOfCardsInDeck + 1];           // playing cards plus blank card 
+        shuffledDeck = new ArrayList<>();                          // Instantiates ArrayList with no elements
+        populateUnshuffledDeckWithCards(numOfCardsInDeck);         // Initializes Unshuffled Deck
+        createShuffledDeck();                                      // Initializes shuffled deck excluding blank card
+    }
+    
+    public int getNumCardsInDeck()
+    {
+        return shuffledDeck.size();   
+    }
+    
+    public Card getTopCard()
+    {
+        return shuffledDeck.remove(0);  //returns the top card of the deck as cards are dealt
+    }
+    
+    public Card getShuffledCard(int index)
+    {
+        return shuffledDeck.get(index);
+        
+        // inputs an int parameter and returns the card from the shuffled deck at that int value.
+    }
+    
+    
+    public ArrayList<Card> getShuffledDeck()
+    {
+        return shuffledDeck; //returs entire shuffled deck
+    }
+    
+    public int limitNumCardsInDeck(int num)
+    {
+        if(num <= 27)
+        {
+            return 27;
+        }
+        else
+        {
+            return 81;
+        }
+        
+        //inputs an int parameter and returns 27 if that parameter is less than or equal to 27 otherwise it returns 81
+    }
+    
+
+    public void createShuffledDeck()
+    {
+        for(Card c : unShuffledDeck)
+        {
+             shuffledDeck.add((int)(Math.random() * (shuffledDeck.size())), c);
+        }
+       
+        shuffledDeck.remove(0);
+    }
+    
+   
     private void populateUnshuffledDeckWithCards(int numOfCardsInDeck)        
     {
         unShuffledDeck[0] = new Card(Card.Shape.NO_SHAPE, Card.Color.NO_COLOR,0,0,
@@ -268,6 +327,5 @@ public class Deck
                 }
           }
     }
-    
-    **************  END OF COMMENT BLOCK  ***************/
+
 }
