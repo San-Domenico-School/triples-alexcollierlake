@@ -1,9 +1,9 @@
 import greenfoot.*;
 /**
- * class Animations here.
+ * class Animations
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Alex_CollierLake 
+ * @version 1/31/2023
  */
 public class Animations  
 {
